@@ -15,3 +15,6 @@ class Course(db.Model):
 
     def __repr__(self):
         return f"<id ={self.id}, title={self.title}, author={self.author}"
+    
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
