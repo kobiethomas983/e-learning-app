@@ -10,11 +10,12 @@ const Course = ({title, author, free, img, overview, url}) => {
     // const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log("testing function")
+        console.log("Opening URL:", url)
+        window.open(url, '_blank')
     }
-    
+
     return(
-        <Card style={{ width: '18rem', marginBottom: '1rem'}}>
+        <Card className="h-100">
             <div style={{ height: '180px', overflow: 'hidden' }}>
                 <Card.Img variant="top" src={img ? img : "holder.js/100px180?text=Image cap"} />
             </div>
