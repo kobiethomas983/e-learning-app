@@ -1,5 +1,7 @@
 import os
 import json
+import psycopg2
+
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -13,7 +15,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + os.path.join(base_dir, 'e-learning.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg2://postgres:postgres@localhost:5432/e-learning-db"
     
     db.init_app(app)
     CORS(app)
@@ -42,11 +44,11 @@ def create_app():
                     db.session.add(course)
                     db.session.commit()
         except SQLAlchemyError as error:
-            raise(f"Error: issues saving {error}")
+            raise Exception(f"Error: issues saving {error}")
         except FileNotFoundError:
-            raise("Error: File not found")
+            raise Exception("Error: File not found")
         except json.JSONDecodeError:
-            raise("Error: Invalid Json format")
+            raise Exception("Error: Invalid Json format")
         
     
     return app
