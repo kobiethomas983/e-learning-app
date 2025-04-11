@@ -34,10 +34,10 @@ def create_app():
                 json_courses = json.load(file)
                 for jc in json_courses:
                     course = Course(
-                        title=jc['title'],
-                        author=jc['author'],
+                        title=jc['title'].lower(),
+                        author=jc['author'].lower(),
                         free=jc['free'],
-                        overview=jc['overview'],
+                        overview=jc['overview'].lower(),
                         img=jc['img'],
                         url=jc['url']
                     )
