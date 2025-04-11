@@ -14,6 +14,13 @@ const Course = ({title, author, free, img, overview, url}) => {
         window.open(url, '_blank')
     }
 
+    const formatBriefOverview = (overview) => {
+        if (overview.length > 100) {
+            return overview.slice(0, 100) + '...'
+        }
+        return overview
+    }
+
     return(
         <Card className="h-100">
             <div style={{ height: '180px', overflow: 'hidden' }}>
@@ -21,12 +28,12 @@ const Course = ({title, author, free, img, overview, url}) => {
             </div>
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
-                <Card.Text>{overview}</Card.Text>
+                <Card.Text>{formatBriefOverview(overview)}</Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroup.Item>Author: {author}</ListGroup.Item>
+                <ListGroup.Item><strong>Author:</strong> {author}</ListGroup.Item>
                 {free == true && (
-                    <ListGroup.Item>Free</ListGroup.Item>
+                    <ListGroup.Item><strong>Free</strong></ListGroup.Item>
                 )}
             </ListGroup>
             <Card.Body>
