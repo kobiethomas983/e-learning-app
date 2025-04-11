@@ -1,6 +1,7 @@
 from flask import jsonify
 from flask_restx import Resource, reqparse
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import joinedload
 
 from .models.api_models import api
 from .models.models import Course
@@ -15,17 +16,21 @@ search_parser.add_argument('q', type=str, required=True)
 @course_api.route("")
 class Courses(Resource):
     def get(self):
-        courses = Course.query.all()
-        return jsonify([c.to_dict() for c in courses])
+        # joinedload does a eagerly fetch on categories so we don't
+        # so we can get all categories for each course all in one sql call
+        courses = Course.query.options(joinedload(Course.categories)).all()
+        return jsonify([course.to_dict(include_categories=True) for course in courses])
     
 
 @course_api.route("/<id>")
 class SingleCourse(Resource):
     def get(self, id):
-        course = Course.query.filter(Course.id == id).one_or_none()
+        course = Course.query.options(joinedload(
+            Course.categories)).filter(Course.id == id).one_or_none()
+
         if not course:
             course_api.abort(404, 'course does not exist')
-        return jsonify(course.to_dict())
+        return jsonify(course.to_dict(include_categories=True))
     
 
 @course_api.route("/search")
