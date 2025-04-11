@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 
 class Course(db.Model):
 
@@ -18,3 +18,25 @@ class Course(db.Model):
     
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+class Category(db.Model):
+
+    __tablename__ = "categories"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+class Course_Category_Map(db.Model):
+    __tablename__ = "course_category_map"
+
+    id = db.Column(db.Integer, primary_key=True)
+    course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+
+

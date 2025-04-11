@@ -2,8 +2,8 @@ from flask import jsonify
 from flask_restx import Resource, reqparse
 from sqlalchemy.exc import SQLAlchemyError
 
-from .api_models import api
-from .models import Course
+from .models.api_models import api
+from .models.models import Course
 
 from . import db
 

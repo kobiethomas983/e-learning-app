@@ -1,0 +1,255 @@
+[
+    {
+      "title": "Django: Python Web Development Unleashed",
+      "author": "Educative",
+      "free": true,
+      "overview": "Django is a free and open-source web application framework written in Python...",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/10370001/5026411048861696/image/4604108341248000",
+      "url": "https://www.educative.io/courses/django-python-web-development",
+      "categories": ["Full Stack", "APIs"]
+    },
+    {
+      "title": "Advanced React Patterns With Hooks",
+      "author": "Ohans Emmanuel",
+      "free": false,
+      "overview": "With the release of hooks, certain React patterns have gone out of style...",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5854561945255936/5664668925296640/image/6581287687553024",
+      "url": "https://www.educative.io/courses/advanced-react-patterns-with-hooks",
+      "categories": ["Frontend", "React"]
+    },
+    {
+      "title": "Web Application and Software Architecture 101",
+      "author": "Shivang Sarawagi",
+      "free": false,
+      "overview": "This course is a 101 on web application and software architecture...",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/6064040858091520/6411938009448448/image/6389694217584640",
+      "url": "https://www.educative.io/courses/web-application-software-architecture-101",
+      "categories": ["Backend"]
+    },
+    {
+      "title": "Advanced TypeScript Masterclass",
+      "author": "Milosz Piechocki",
+      "free": false,
+      "overview": "Are you using TypeScript, but feel like you’re not making the most out of it?",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/4801358654865408/6710354043207680/image/4896926832001024",
+      "url": "https://www.educative.io/courses/advanced-typescript-masterclass",
+      "categories": ["TypeScript", "Full Stack"]
+    },
+    {
+      "title": "Python Data Structures and Algorithms",
+      "author": "Educative",
+      "free": true,
+      "overview": "Learn fundamental data structures and algorithms in Python with hands-on examples...",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5473858639990784/6468566621548544/image/5735075153934336",
+      "url": "https://www.educative.io/courses/python-data-structures-algorithms",
+      "categories": ["Python", "Interviews", "Data Structures"]
+    },
+    {
+      "title": "The Road to React",
+      "author": "Robin Wieruch",
+      "free": false,
+      "overview": "A hands-on tutorial that teaches the fundamentals of React by building a real app...",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5271193819895808/5567863001051136/image/4727740277581824",
+      "url": "https://www.educative.io/courses/road-to-react",
+      "categories": ["React", "Frontend"]
+    },
+    {
+      "title": "Learn Python from Scratch",
+      "author": "Educative",
+      "free": true,
+      "overview": "This course is for beginners to learn Python programming from the ground up.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/10370001/5661266373165056/image/5030349925881856",
+      "url": "https://www.educative.io/courses/learn-python-3-from-scratch",
+      "categories": ["Python"]
+    },
+    {
+      "title": "Grokking the Coding Interview: Patterns for Coding Questions",
+      "author": "Design Gurus",
+      "free": false,
+      "overview": "This course uses a pattern-based approach to prepare for coding interviews.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/6526579741943808/4813669321111552/image/4685353103253504",
+      "url": "https://www.educative.io/courses/grokking-coding-interview-patterns",
+      "categories": ["System Design", "Interviews"]
+    },
+    {
+      "title": "The System Design Primer",
+      "author": "Donne Martin",
+      "free": false,
+      "overview": "Learn key system design concepts with interactive examples and real-world scenarios.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/6746113276215296/4886679758497792/image/6323784394539008",
+      "url": "https://www.educative.io/courses/system-design-primer",
+      "categories": ["System Design", "Interviews"]
+    },
+    {
+      "title": "Machine Learning in Python",
+      "author": "Isaac Faber",
+      "free": false,
+      "overview": "Learn foundational ML algorithms in Python, with real data and examples.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5414805660805120/4712633875978240/image/6403462566481920",
+      "url": "https://www.educative.io/courses/machine-learning-python",
+      "categories": ["Python"]
+    },
+    {
+      "title": "Crash Course on Python for Data Science",
+      "author": "Educative",
+      "free": true,
+      "overview": "A hands-on crash course focused on Python for data science applications.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5671289123018752/5879256039262208/image/5855940132233216",
+      "url": "https://www.educative.io/courses/crash-course-python-data-science",
+      "categories": ["Python", "Data Analysis"]
+    },
+    {
+      "title": "Learn Go from Scratch",
+      "author": "Educative",
+      "free": true,
+      "overview": "Learn the Go programming language by building real-world apps.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/6071331832287232/5106939876892672/image/6635392771880960",
+      "url": "https://www.educative.io/courses/learn-go-from-scratch",
+      "categories": ["Go"]
+    },
+    {
+      "title": "Java Multithreading for Senior Engineering Interviews",
+      "author": "Anshuman Singh",
+      "free": false,
+      "overview": "A guide to solving multithreading problems in Java for top tech interviews.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5599032792082432/5662736250103808/image/5319658288816128",
+      "url": "https://www.educative.io/courses/java-multithreading-senior-interviews",
+      "categories": ["Concurrency", "Java"]
+    },
+    {
+      "title": "Docker for DevOps Engineers",
+      "author": "Educative",
+      "free": false,
+      "overview": "Learn Docker in-depth and how to apply it for building scalable apps.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5989942918651904/5415051421544448/image/5374880471910400",
+      "url": "https://www.educative.io/courses/docker-devops",
+      "categories": ["Systems Programming"]
+    },
+    {
+      "title": "SQL for Beginners",
+      "author": "Educative",
+      "free": true,
+      "overview": "A hands-on course that teaches the basics of writing and understanding SQL queries.",
+      "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5433393387247616/5586398480193536/image/6389983976140800",
+      "url": "https://www.educative.io/courses/learn-sql-from-scratch",
+      "categories": ["SQL", "Data Analysis", "Databases"]
+    },
+    {
+        "title": "Web Development: Unraveling HTML, CSS, and JavaScript",
+        "author": "Istvan Novak",
+        "free": false,
+        "overview": "HTML, CSS, and JavaScript: The trinity of web development technologies...",
+        "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/10370001/5551624074297344/image/5668113229021184",
+        "url": "https://www.educative.io/courses/web-development-unraveling-html-css-js",
+        "categories": ["Web Development", "HTML", "CSS", "JavaScript"]
+      },
+      {
+        "title": "Building Full-Stack Web Applications with AdonisJs",
+        "author": "Champ Ramentio",
+        "free": true,
+        "overview": "This course is a detailed guide to AdonisJs...",
+        "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/10370001/6079504494624768/image/6402210052177920",
+        "url": "https://www.educative.io/courses/building-full-stack-web-applications-adonisjs",
+        "categories": ["JavaScript", "Backend", "Full Stack"]
+      },
+      {
+        "title": "Using TypeScript with React",
+        "author": "Carl Rippon",
+        "free": true,
+        "overview": "If you are a React developer and want to build your React apps faster...",
+        "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/4619705736232960/4884662000287744/image/6150106001702912",
+        "url": "https://www.educative.io/courses/using-typescript-with-react",
+        "categories": ["React", "TypeScript", "Frontend"]
+      },
+      {
+        "title": "Intro to Rust for JavaScript Developers",
+        "author": "Educative",
+        "free": true,
+        "overview": "Learn Rust by comparing familiar JavaScript patterns and seeing how they translate to Rust.",
+        "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/6595675641767936/6598393083232256/image/6598857158848512",
+        "url": "https://www.educative.io/courses/rust-for-js-devs",
+        "categories": ["Rust", "Systems Programming", "JavaScript"]
+      },
+      {
+        "title": "Groking the System Design Interview",
+        "author": "Design Gurus",
+        "free": false,
+        "overview": "Learn how to design scalable systems like a pro — includes diagrams and mock interviews.",
+        "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5234508918128640/5649058001709056/image/5710922751178752",
+        "url": "https://www.educative.io/courses/grokking-the-system-design-interview",
+        "categories": ["System Design", "Backend", "Interviews"]
+      },
+      {
+        "title": "Data Structures for Coding Interviews in Python",
+        "author": "Educative",
+        "free": false,
+        "overview": "Master data structures in Python and ace your next technical interview.",
+        "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/6074629785341952/4822289303085056/image/6532006484234240",
+        "url": "https://www.educative.io/courses/data-structures-coding-interviews-python",
+        "categories": ["Python", "Data Structures", "Interviews"]
+      },
+      {
+        "title": "Zero to Production in FastAPI",
+        "author": "Sebastián Ramírez",
+        "free": true,
+        "overview": "A hands-on guide to building real-world APIs using FastAPI and Python.",
+        "img": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png",
+        "url": "https://www.fastapitutorial.com",
+        "categories": ["FastAPI", "Backend", "Python", "APIs"]
+      },
+      {
+        "title": "Building Reusable Component Libraries in React",
+        "author": "Kent C. Dodds",
+        "free": false,
+        "overview": "Learn to create robust, maintainable UI libraries using modern React patterns and tools.",
+        "img": "https://www.epicreact.dev/images/og-image.png",
+        "url": "https://epicreact.dev/component-library/",
+        "categories": ["React", "Frontend", "Design Systems"]
+      },
+      {
+          "title": "Mastering Go Concurrency Patterns",
+          "author": "Educative",
+          "free": false,
+          "overview": "Learn how to use Goroutines, Channels, and advanced patterns to write concurrent Go applications.",
+          "img": "https://www.educative.io/cdn-cgi/image/f=auto,fit=cover,w=600/v2api/collection/5164978759784448/5712876413333504/image/6106757789315072",
+          "url": "https://www.educative.io/courses/go-concurrency-patterns",
+          "categories": ["Go", "Concurrency", "Backend"]
+        },
+        {
+          "title": "Kubernetes for Developers",
+          "author": "Kelsey Hightower",
+          "free": true,
+          "overview": "Get hands-on with Kubernetes: learn how to containerize apps, manage deployments, and scale services.",
+          "img": "https://d33wubrfki0l68.cloudfront.net/01a251bdaed14df3babc5d7f6b77c184df4e7e6a/baec8/images/kubernetes.svg",
+          "url": "https://www.kelseyhightower.dev/kubernetes-for-developers",
+          "categories": ["DevOps", "Kubernetes", "Cloud"]
+        },
+        {
+          "title": "The Complete Guide to GraphQL",
+          "author": "Robin Wieruch",
+          "free": true,
+          "overview": "Learn GraphQL fundamentals by building full-stack apps with Node.js, React, and Apollo.",
+          "img": "https://www.howtographql.com/static/1b92b93dc0f6067845b6c34c3b36db83/3ff52/graphql.png",
+          "url": "https://www.howtographql.com/",
+          "categories": ["GraphQL", "Full Stack", "APIs"]
+        },
+        {
+          "title": "SQL for Data Analysis: Beginner to Advanced",
+          "author": "Mode Analytics",
+          "free": true,
+          "overview": "Master SQL to analyze data, generate reports, and draw insights using real-world datasets.",
+          "img": "https://mode.com/static/images/sql/sql-courses-cover.png",
+          "url": "https://mode.com/sql-tutorial/",
+          "categories": ["SQL", "Data Analysis", "Databases"]
+        },
+        {
+          "title": "Building Mobile Apps with Flutter",
+          "author": "Google Developers",
+          "free": true,
+          "overview": "Learn Flutter and Dart from scratch and build cross-platform mobile applications.",
+          "img": "https://flutter.dev/assets/homepage/carousel/slide_1-bg-opaque-d11e4aaee1e17413ce0e8f0b3fc9c8134b927e41cd7fdbe6ecfeec3554e1a2cb.jpg",
+          "url": "https://flutter.dev/docs/get-started/codelab",
+          "categories": ["Flutter", "Mobile Development", "Cross Platform"]
+        }
+    ]
+    
