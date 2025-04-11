@@ -15,6 +15,7 @@ const CoursesView = ({courses}) => {
                             img={crs.img}
                             overview={crs.overview}
                             url={crs.url}
+                            categories={crs.categories}
                         />
                     </div>
                 ))}
