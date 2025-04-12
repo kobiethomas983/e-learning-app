@@ -2,6 +2,7 @@ from flask import jsonify
 from flask_restx import Resource, reqparse
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import joinedload
+import math
 
 from .models.api_models import api
 from .models.models import Course
@@ -41,9 +42,9 @@ class Courses(Resource):
                         .offset(offset)
                         .all()
                     )
-            
+
             count = query.count()
-            total_pages = (count * page_size - 1) // page_size
+            total_pages = math.ceil(count / page_size)
 
             response = {
                 'courses': [course.to_dict(include_categories=True) for course in courses],
