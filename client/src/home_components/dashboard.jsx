@@ -14,8 +14,6 @@ export const Dashboard = () => {
     const pageSize = 6; // Number of courses per page
 
     useEffect(() => {
-
-        // Simulating API response with mock pagination
         const fetchCourses = async () => {
             setLoading(true);
             try {
