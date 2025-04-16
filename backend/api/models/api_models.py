@@ -1,8 +1,9 @@
-from flask_restx import Namespace, fields
+from flask_restx import fields, Namespace
 
-api = Namespace(name="courses", description="Course API")
+course_namespace = Namespace(name="courses", description="Course API")
+categories_namespace =  Namespace(name="categories", description="Categories API")
 
-course_model = api.model(
+course_model = course_namespace.model(
     'Course',
     {
         "title": fields.String(),

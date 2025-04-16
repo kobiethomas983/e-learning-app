@@ -21,7 +21,7 @@ def create_app():
     CORS(app)
     
     api = Api(app)
-    from .routes import course_api
+    from .routes.courses import course_api
     api.add_namespace(course_api, path='/courses')
 
     with app.app_context():
