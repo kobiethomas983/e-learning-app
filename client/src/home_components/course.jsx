@@ -1,13 +1,13 @@
 import React from 'react'
-// import { useNavigate } from 'react-router-dom'
 import {
     Card,
     ListGroup,
     Button
 } from 'react-bootstrap'
 
-const Course = ({title, author, free, img, overview, url}) => {
-    // const navigate = useNavigate();
+import "./styles.css"
+
+const Course = ({title, author, free, img, overview, url, categories}) => {
 
     const handleClick = () => {
         console.log("Opening URL:", url)
@@ -21,6 +21,11 @@ const Course = ({title, author, free, img, overview, url}) => {
         return overview
     }
 
+    const capitalize = (str) => {
+        if (!str) return '';
+        return str[0].toUpperCase() + str.slice(1).toLowerCase();
+    }
+
     return(
         <Card className="h-100">
             <div style={{ height: '180px', overflow: 'hidden' }}>
@@ -32,9 +37,23 @@ const Course = ({title, author, free, img, overview, url}) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item><strong>Author:</strong> {author}</ListGroup.Item>
-                {free == true && (
-                    <ListGroup.Item><strong>Free</strong></ListGroup.Item>
-                )}
+                {free == true
+                 ? <ListGroup.Item><strong>Free-Course</strong></ListGroup.Item>
+                 : <ListGroup.Item><strong>Paid-Course</strong></ListGroup.Item>
+                }
+                <ListGroup.Item>
+                    <p>
+                        {categories?.map((category, index) => {
+                        return <a 
+                                    key={index}
+                                    className='category-link'
+                                    onClick={() => console.log('Clicked category mock function')}
+                                >
+                                    {capitalize(category)}
+                                </a>
+                })}
+                 </p>
+                </ListGroup.Item>
             </ListGroup>
             <Card.Body>
                 <Button onClick={handleClick} variant='primary'>Check Site</Button>

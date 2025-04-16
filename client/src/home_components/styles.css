@@ -1,0 +1,13 @@
+/* Add this in your CSS file (e.g., App.css or a separate module) */
+.category-link {
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    padding-right: 10px;
+  }
+  
+  .category-link:hover {
+    color: #0056b3;
+  }
+  
