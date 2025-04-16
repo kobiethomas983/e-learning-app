@@ -25,7 +25,7 @@ class Course(db.Model):
     def to_dict(self, include_categories=False):
         data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
         if include_categories:
-            data['categories'] = [cat.name for cat in self.categories]
+            data['categories'] = [{"name": cat.name, "id": cat.id} for cat in self.categories]
         
         return data
 

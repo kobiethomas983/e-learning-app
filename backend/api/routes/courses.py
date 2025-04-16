@@ -3,13 +3,12 @@ from flask_restx import Resource, reqparse
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import joinedload
 import math
+import pprint
 
-from .models.api_models import api
-from .models.models import Course
+from api.models.api_models import course_namespace
+from api.models.models import Course, Course_Category_Map
 
-from . import db
-
-course_api = api
+course_api = course_namespace
 
 search_parser = reqparse.RequestParser()
 search_parser.add_argument('q', type=str, required=True)
@@ -18,6 +17,10 @@ pagination_parser = reqparse.RequestParser()
 pagination_parser.add_argument('page', type=int, default=1)
 pagination_parser.add_argument('page_size', type=int, default=10)
 pagination_parser.add_argument('author_filter', type=str, default="")
+
+categories_pagination_parser = reqparse.RequestParser()
+categories_pagination_parser.add_argument('page', type=int, default=1)
+categories_pagination_parser.add_argument('page_size', type=int, default=5)
 
 @course_api.route("")
 class Courses(Resource):
@@ -68,6 +71,30 @@ class SingleCourse(Resource):
             course_api.abort(404, 'course does not exist')
         return jsonify(course.to_dict(include_categories=True))
     
+@course_api.route("/categories/<id>")
+class CoursesByCategory(Resource):
+    def get(self, id):
+      try:
+        q_params = categories_pagination_parser.parse_args()
+        
+        courses = Course.query.options(joinedload(Course.categories)) \
+                .join(Course_Category_Map, Course.id == Course_Category_Map.course_id) \
+                .filter(Course_Category_Map.category_id == id) \
+                .paginate(page=q_params.get('page'), per_page=q_params.get('page_size'), error_out=False)
+
+        response_courses = [course.to_dict(include_categories=True) for course in courses]
+        response = {
+            'courses': response_courses,
+            'page': q_params.get('page'),
+            'page_size': q_params.get('page_size'),
+            'total_course': courses.total,
+            'total_page': math.ceil(courses.total/q_params.get('page_size'))
+        }
+        return jsonify(response)
+      except Exception as error:
+          course_api.abort(500, f"error processing request: {error}")
+      
+      
 
 @course_api.route("/search")
 class SearchCourse(Resource):
@@ -91,4 +118,3 @@ class SearchCourse(Resource):
                 unique_courses.append(crs)
 
         return jsonify([c.to_dict() for c in unique_courses])
-
