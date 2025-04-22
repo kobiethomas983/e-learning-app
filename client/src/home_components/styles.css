@@ -6,8 +6,24 @@
     transition: color 0.2s ease-in-out;
     padding-right: 10px;
   }
-  
+
   .category-link:hover {
     color: #0056b3;
   }
-  
+
+/* Container for single card view to maintain consistent width */
+.single-card-container {
+    width: 22rem;
+    margin: 0 auto 2rem auto; /* top right bottom left */
+}
+
+/* Add more spacing to the row when in single card view */
+.single-card-row {
+    row-gap: 2rem; /* Increased from 1.5rem for more spacing */
+}
+
+/* Style for the card when in single card view */
+.single-card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visual separation */
+}

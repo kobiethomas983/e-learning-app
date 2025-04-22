@@ -7,11 +7,16 @@ import {
 
 import "./styles.css"
 
-const Course = ({title, author, free, img, overview, url, categories}) => {
 
-    const handleClick = () => {
+const Course = ({title, author, free, img, overview, url, categories, onCategoryFetch, singleCardView}) => {
+
+    const handleClickOnSite = () => {
         console.log("Opening URL:", url)
         window.open(url, '_blank')
+    }
+
+    const handleClickOnCategory = (category_id) => {
+        onCategoryFetch(category_id);
     }
 
     const formatBriefOverview = (overview) => {
@@ -26,8 +31,11 @@ const Course = ({title, author, free, img, overview, url, categories}) => {
         return str[0].toUpperCase() + str.slice(1).toLowerCase();
     }
 
+    // Apply a max-width when in single card view to prevent stretching
+    const cardStyle = singleCardView ? { maxWidth: '22rem' } : {};
+
     return(
-        <Card className="h-100">
+        <Card className={`h-100 ${singleCardView ? 'single-card' : ''}`} style={cardStyle}>
             <div style={{ height: '180px', overflow: 'hidden' }}>
                 <Card.Img variant="top" src={img ? img : "holder.js/100px180?text=Image cap"} />
             </div>
@@ -44,19 +52,19 @@ const Course = ({title, author, free, img, overview, url, categories}) => {
                 <ListGroup.Item>
                     <p>
                         {categories?.map((category, index) => {
-                        return <a 
+                        return <a
                                     key={index}
                                     className='category-link'
-                                    onClick={() => console.log('Clicked category mock function')}
+                                    onClick={() =>handleClickOnCategory(category.id)}
                                 >
-                                    {capitalize(category)}
+                                    {capitalize(category?.name)}
                                 </a>
                 })}
                  </p>
                 </ListGroup.Item>
             </ListGroup>
             <Card.Body>
-                <Button onClick={handleClick} variant='primary'>Check Site</Button>
+                <Button onClick={handleClickOnSite} variant='primary'>Check Site</Button>
             </Card.Body>
         </Card>
     )
