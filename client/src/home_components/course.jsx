@@ -6,12 +6,19 @@ import {
 } from 'react-bootstrap'
 
 import "./styles.css"
+import { BASE_URL } from '../utils'
+import { CategoryCourseView } from '../categories_components/category_view'
 
-const Course = ({title, author, free, img, overview, url, categories}) => {
+const Course = ({title, author, free, img, overview, url, categories, id}) => {
 
-    const handleClick = () => {
+    const handleClickOnSite = () => {
         console.log("Opening URL:", url)
         window.open(url, '_blank')
+    }
+
+    const handleClickOnCategory = () => {
+        console.log("here")
+       return <CategoryCourseView id={id}/>
     }
 
     const formatBriefOverview = (overview) => {
@@ -47,16 +54,16 @@ const Course = ({title, author, free, img, overview, url, categories}) => {
                         return <a 
                                     key={index}
                                     className='category-link'
-                                    onClick={() => console.log('Clicked category mock function')}
+                                    onClick={handleClickOnCategory}
                                 >
-                                    {capitalize(category)}
+                                    {capitalize(category?.name)}
                                 </a>
                 })}
                  </p>
                 </ListGroup.Item>
             </ListGroup>
             <Card.Body>
-                <Button onClick={handleClick} variant='primary'>Check Site</Button>
+                <Button onClick={handleClickOnSite} variant='primary'>Check Site</Button>
             </Card.Body>
         </Card>
     )

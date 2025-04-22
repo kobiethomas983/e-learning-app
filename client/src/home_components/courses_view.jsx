@@ -2,7 +2,7 @@ import React from 'react'
 import Course from './course'
 
 
-const CoursesView = ({courses}) => {
+const CoursesView = ({courses, classProp}) => {
     // Handle case when courses is undefined or empty
     if (!courses || courses.length === 0) {
         return (
@@ -16,7 +16,7 @@ const CoursesView = ({courses}) => {
 
     return (
         <div className="container">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <div className={classProp}>
                 {courses.map((crs, idx) => (
                     <div className="col" key={idx}>
                         <Course

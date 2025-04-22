@@ -44,7 +44,7 @@ class Courses(Resource):
                         .limit(page_size)
                         .offset(offset)
                         .all()
-                    )
+                    )       
 
             count = query.count()
             total_pages = math.ceil(count / page_size)

@@ -1,36 +1,33 @@
 import React, {useState, useEffect} from "react";
-import CoursesView from "./courses_view";
+import CoursesView from "../home_components/courses_view";
 import { Pagination } from "react-bootstrap";
 
 import axios from "axios";
 import { BASE_URL, DEFAULT_PAGE_SIZE } from "../utils";
 
-export const Dashboard = () => {
-    const [courses, setCourses] = useState([]);
+export const CategoryCourseView = ({id}) => {
     const [pageNumber, setPageNumber] = useState(1);
+    const [courses, setCourses] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
-    const [courseCount, setCourseCount] = useState(0)
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const fetchCourses = async () => {
-            setLoading(true);
+        const fetchCoursesByCategory = () => {
             try {
-                const response = await axios.get(`${BASE_URL}/courses?page=${pageNumber}&page_size=${DEFAULT_PAGE_SIZE}`);
+                const response = axios.get(`${BASE_URL}/courses/categories/${id}?page=${pageNumber}&page_size=${DEFAULT_PAGE_SIZE}`);
                 setCourses(response?.data?.courses);
                 setTotalPages(response?.data?.total_pages || 1);
-                setCourseCount(response?.data?.total_course)
-            } catch (error) {
+            } catch(error) {
                 alert(`Error retrieving courses: ${error}`);
             } finally {
                 setLoading(false);
             }
         };
+        fetchCoursesByCategory();
+    }, [courses]);
 
-        fetchCourses();
-    }, [pageNumber]);
 
-    // Handle page change
+        // Handle page change
     const handlePageChange = (newPage) => {
         setPageNumber(newPage);
         window.scrollTo(0, 0);
@@ -74,7 +71,7 @@ export const Dashboard = () => {
         return items;
     };
 
-    return(
+    return (
         <div className="container my-4">
             {loading ? (
                 <div className="text-center my-5">
@@ -85,7 +82,7 @@ export const Dashboard = () => {
                 </div>
             ) : (
                 <>
-                    <CoursesView courses={courses} classProp="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"/>
+                    <CoursesView courses={courses} classProp="row row-cols-1"/>
 
                     {/* Pagination controls */}
                     {totalPages > 1 && (
@@ -95,6 +92,8 @@ export const Dashboard = () => {
                     )}
                 </>
             )}
-        </div>
-    );
+      </div>
+    )
+
+
 }
