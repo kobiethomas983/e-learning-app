@@ -52,6 +52,23 @@ export const Dashboard = () => {
         }
     }
 
+    const fetchCoursesByAuthor = async(author) => {
+        setLoading(true);
+        try {
+            const response = await axios.get(
+                `${BASE_URL}/courses?pages=${pageNumber}&page_size=${DEFAULT_PAGE_SIZE}&author_filter=${author}`
+            )
+            setCourses(response?.data?.courses);
+            setTotalPages(response?.data?.total_pages);
+            setStyle("row row-cols-1");
+            setSingleCardView(true);
+        } catch (error) {
+            alert(`Error retrieving courses by author: ${error}`);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     // Handle page change
     const handlePageChange = (newPage) => {
         setPageNumber(newPage);
@@ -112,6 +129,7 @@ export const Dashboard = () => {
                         courses={courses}
                         classProp={style}
                         onCategoryFetch={fetchCoursesByCategory}
+                        onAuthorFetch={fetchCoursesByAuthor}
                         singleCardView={singleCardView}
                     />
                     {/* Pagination controls */}

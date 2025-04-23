@@ -8,7 +8,7 @@ import {
 import "./styles.css"
 
 
-const Course = ({title, author, free, img, overview, url, categories, onCategoryFetch, singleCardView}) => {
+const Course = ({title, author, free, img, overview, url, categories, onCategoryFetch, onAuthorFetch, singleCardView}) => {
 
     const handleClickOnSite = () => {
         console.log("Opening URL:", url)
@@ -17,6 +17,10 @@ const Course = ({title, author, free, img, overview, url, categories, onCategory
 
     const handleClickOnCategory = (category_id) => {
         onCategoryFetch(category_id);
+    }
+
+    const handleClickOnAuthor = (author) => {
+        onAuthorFetch(author);
     }
 
     const formatBriefOverview = (overview) => {
@@ -44,7 +48,15 @@ const Course = ({title, author, free, img, overview, url, categories, onCategory
                 <Card.Text>{formatBriefOverview(overview)}</Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroup.Item><strong>Author:</strong> {author}</ListGroup.Item>
+                <ListGroup.Item>
+                    <strong>Author:</strong> 
+                    <a 
+                        className='category-link'
+                        onClick={() => handleClickOnAuthor(author)}
+                    >
+                        {author}
+                    </a>
+                </ListGroup.Item>
                 {free == true
                  ? <ListGroup.Item><strong>Free-Course</strong></ListGroup.Item>
                  : <ListGroup.Item><strong>Paid-Course</strong></ListGroup.Item>

@@ -2,7 +2,7 @@ import React from 'react'
 import Course from './course'
 
 
-const CoursesView = ({courses, classProp, onCategoryFetch, singleCardView}) => {
+const CoursesView = ({courses, classProp, onCategoryFetch, onAuthorFetch, singleCardView}) => {
     // Handle case when courses is undefined or empty
     if (!courses || courses.length === 0) {
         return (
@@ -29,6 +29,7 @@ const CoursesView = ({courses, classProp, onCategoryFetch, singleCardView}) => {
                                 url={crs.url}
                                 categories={crs.categories}
                                 onCategoryFetch={onCategoryFetch}
+                                onAuthorFetch={onAuthorFetch}
                                 singleCardView={singleCardView}
                             />
                         </div>
