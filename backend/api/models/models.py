@@ -68,6 +68,7 @@ class User(db.Model):
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, nullable=True)
+    password = db.Column(db.String(255), nullable=True)
     profile_image = db.Column(db.String(512))
 
     roles = db.relationship(
