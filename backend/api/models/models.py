@@ -82,6 +82,12 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     role_name = db.Column(db.String(255), unique=True, nullable=False)
 
+    users = db.relationship(
+        'User',
+        secondary='user_roles',
+        back_populates='roles'
+    )
+
 
 
 class User_Roles(db.Model):
@@ -91,5 +97,5 @@ class User_Roles(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     __table_args__ = (
-        PrimaryKeyConstraint('role_id', 'user_id')
+        PrimaryKeyConstraint('role_id', 'user_id'),
     )
