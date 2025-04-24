@@ -1,4 +1,5 @@
 from .. import db
+from sqlalchemy import PrimaryKeyConstraint
 
 class Course(db.Model):
 
@@ -60,3 +61,35 @@ class Course_Category_Map(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
 
 
+class User(db.Model):
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
+    email = db.Column(db.String(255), unique=True, nullable=True)
+    profile_image = db.Column(db.String(512))
+
+    roles = db.relationship(
+        'Role',
+        secondary="user_roles",
+        back_populates='users'
+    )
+
+class Role(db.Model):
+    __tablename__ = "roles"
+
+    id = db.Column(db.Integer, primary_key=True)
+    role_name = db.Column(db.String(255), unique=True, nullable=False)
+
+
+
+class User_Roles(db.Model):
+    __tablename__ = "user_roles"
+    
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    __table_args__ = (
+        PrimaryKeyConstraint('role_id', 'user_id')
+    )
