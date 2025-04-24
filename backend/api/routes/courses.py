@@ -3,7 +3,6 @@ from flask_restx import Resource, reqparse
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import joinedload
 import math
-import pprint
 
 from api.models.api_models import course_namespace
 from api.models.models import Course, Course_Category_Map

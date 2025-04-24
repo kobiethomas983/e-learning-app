@@ -22,7 +22,10 @@ def create_app():
     
     api = Api(app)
     from .routes.courses import course_api
+    from .routes.categories import categories_api
+
     api.add_namespace(course_api, path='/courses')
+    api.add_namespace(categories_api, path='/categories')
 
     with app.app_context():
         db.create_all() #checks if tables exists, if dont creates them
