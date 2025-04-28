@@ -65,7 +65,7 @@ def seed_courses():
 
 
 def seed_users():
-    with open('user.json', 'r') as f:
+    with open('users.json', 'r') as f:
         json_users = json.load(f)
 
         try:
@@ -85,6 +85,7 @@ def seed_users():
                     first_name=ju['first_name'].lower(),
                     last_name=ju['last_name'].lower(),
                     email=ju['email'].lower(),
+                    password=ju['password'],
                     profile_image=ju['profile_image']
                 )
 
