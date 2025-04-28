@@ -5,6 +5,13 @@ categories_namespace =  Namespace(name="categories", description="Categories API
 admin_namespace = Namespace(name="admin", description="Admin API")
 auth_namespace = Namespace(name="authentication", description="Authentication API")
 
+category_model = admin_namespace.model(
+    'Category',
+    {
+        "name": fields.String(required=True)
+    }
+)
+
 
 course_model = admin_namespace.model(
     'Course',
@@ -14,7 +21,8 @@ course_model = admin_namespace.model(
         "free": fields.Boolean(required=True),
         "overview": fields.String(),
         "img": fields.String(),
-        "url": fields.String(required=True)
+        "url": fields.String(required=True),
+        "categories": fields.List(fields.Nested(category_model), required=True)
     }
 )
 
