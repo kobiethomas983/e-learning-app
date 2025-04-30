@@ -2,6 +2,7 @@ from flask import jsonify
 from flask_restx import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import joinedload
 
 from api.models.api_models import admin_namespace, course_model
 from api.models.models import (
@@ -26,7 +27,6 @@ class AdminCourses(Resource):
     @jwt_required()
     @admin_api.expect(course_model, validate=True)
     def post(self):
-    
         email_identity = get_jwt_identity()
         user = User.query.filter(User.email == email_identity).one_or_none()
         user_roles = User_Roles.query.filter(User_Roles.user_id == user.id).all()
@@ -70,3 +70,66 @@ class AdminCourses(Resource):
         except SQLAlchemyError as error:
             print(f"Error saving data for course create: {error}")
             admin_api.abort(500, "internal database error")
+    
+
+@admin_api.route("/<int:id>")
+class AdminCourse(Resource):
+    @jwt_required()
+    @admin_api.expect(course_model, validate=True)
+    def put(self, id):
+        email_identity = get_jwt_identity()
+        if not is_admin(email_identity):
+            admin_api.abort(401, "unauthorized to do this operation")
+        
+        original_course = Course.query.filter(Course.id == id).one_or_none()
+        if not original_course:
+            admin_api.abort(404, "course doesn't exist")
+        
+        updated_course = admin_api.payload
+        
+        original_course.title = updated_course.get('title')
+        original_course.author = updated_course.get('author')
+        original_course.free = updated_course.get('free')
+        original_course.overview = updated_course.get('overview')
+        original_course.img = updated_course.get('img')
+
+        try:
+            Course_Category_Map.query\
+            .filter(Course_Category_Map.course_id == original_course.id)\
+            .delete(synchronize_session="fetch")
+
+            for cat in updated_course.get('categories'):
+               category = Category.query.filter(Category.name == cat.get('name')).one_or_none()
+               if not category:
+                   admin_api.abort(400, "category needs to exist for course update")
+                
+               print(f"Category: {category}")
+               course_categories_mapping = Course_Category_Map(
+                   course_id=original_course.id, 
+                   category_id=category.id
+                )
+               
+               db.session.add(course_categories_mapping)
+            db.session.commit()
+        except Exception as error:
+            db.session.rollback()
+            print(f"Error updating course mapping {error}")
+            admin_api.abort(500, "internal server error")
+
+        update_course = Course.query.options(joinedload(Course.categories)).filter(Course.id == original_course.id).one()
+        return jsonify(update_course.to_dict(include_categories=True))
+    
+    # @jwt_required()
+    # def delete(self, id):
+    #     email_identity = get_jwt_identity()
+    #     if not is_admin:
+    #         admin_api.abort(401, "unauthorized to do this operation")
+        
+
+
+
+def is_admin(email_identity):
+        user = User.query.filter(User.email == email_identity).one_or_none()
+        user_roles = User_Roles.query.filter(User_Roles.user_id == user.id).all()
+        is_admin = list(filter(lambda x: x.role_id == roles_to_ids["admin"], user_roles))
+        return len(is_admin) > 0
