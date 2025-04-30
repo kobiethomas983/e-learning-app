@@ -103,7 +103,6 @@ class AdminCourse(Resource):
                if not category:
                    admin_api.abort(400, "category needs to exist for course update")
                 
-               print(f"Category: {category}")
                course_categories_mapping = Course_Category_Map(
                    course_id=original_course.id, 
                    category_id=category.id
