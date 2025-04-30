@@ -7,7 +7,7 @@ class Course(db.Model):
 
     id = db.Column(db.Integer, primary_key =True)
     title = db.Column(db.String(255), unique=True, nullable=False)
-    author = db.Column(db.String(255), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     free = db.Column(db.Boolean, nullable=False)
     overview = db.Column(db.Text)
     img = db.Column(db.String(512))
@@ -19,6 +19,8 @@ class Course(db.Model):
         secondary='course_category_map',
         back_populates='courses'
     )
+
+    author = db.relationship('User', backref='courses')
 
     def __repr__(self):
         return f"<id ={self.id}, title={self.title}, author={self.author}>"
@@ -70,6 +72,7 @@ class User(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=True)
     password = db.Column(db.String(255), nullable=True)
     profile_image = db.Column(db.String(512))
+    is_author = db.Column(db.Boolean, nullable=False)
 
     roles = db.relationship(
         'Role',
