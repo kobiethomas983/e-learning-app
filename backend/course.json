@@ -190,7 +190,7 @@
       },
       {
         "title": "Zero to Production in FastAPI",
-        "author": "Sebastián Ramírez",
+        "author": "Sebastian Ramerez",
         "free": true,
         "overview": "A hands-on guide to building real-world APIs using FastAPI and Python.",
         "img": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png",
@@ -199,7 +199,7 @@
       },
       {
         "title": "Building Reusable Component Libraries in React",
-        "author": "Kent C. Dodds",
+        "author": "Kenth Dodds",
         "free": false,
         "overview": "Learn to create robust, maintainable UI libraries using modern React patterns and tools.",
         "img": "https://www.epicreact.dev/images/og-image.png",
