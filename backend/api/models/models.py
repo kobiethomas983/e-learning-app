@@ -7,7 +7,7 @@ class Course(db.Model):
 
     id = db.Column(db.Integer, primary_key =True)
     title = db.Column(db.String(255), unique=True, nullable=False)
-    author = db.Column(db.String(255), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     free = db.Column(db.Boolean, nullable=False)
     overview = db.Column(db.Text)
     img = db.Column(db.String(512))
@@ -20,14 +20,22 @@ class Course(db.Model):
         back_populates='courses'
     )
 
+    author = db.relationship('User', backref='courses')
+
     def __repr__(self):
         return f"<id ={self.id}, title={self.title}, author={self.author}>"
     
-    def to_dict(self, include_categories=False):
+    def to_dict(self, include_categories=False, include_author=False):
         data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
         if include_categories:
             data['categories'] = [{"name": cat.name, "id": cat.id} for cat in self.categories]
-        
+        if include_author:
+            data['author'] = {
+                "id": self.author.id,
+                "name": " ".join((self.author.first_name, self.author.last_name)),
+                "email": self.author.email,
+                "profile_image": self.author.profile_image
+            }
         return data
 
 
@@ -70,6 +78,7 @@ class User(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=True)
     password = db.Column(db.String(255), nullable=True)
     profile_image = db.Column(db.String(512))
+    is_author = db.Column(db.Boolean, nullable=False)
 
     roles = db.relationship(
         'Role',

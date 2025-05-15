@@ -49,7 +49,7 @@ class Courses(Resource):
             total_pages = math.ceil(count / page_size)
 
             response = {
-                'courses': [course.to_dict(include_categories=True) for course in courses],
+                'courses': [course.to_dict(include_categories=True, include_author=True) for course in courses],
                 'page': page,
                 'page_size': page_size,
                 'total_course': count,
@@ -63,12 +63,19 @@ class Courses(Resource):
 @course_api.route("/<id>")
 class SingleCourse(Resource):
     def get(self, id):
-        course = Course.query.options(joinedload(
-            Course.categories)).filter(Course.id == id).one_or_none()
+        course = (
+                    Course.query
+                    .options(
+                        joinedload(Course.categories),
+                        joinedload(Course.author)
+                    )
+                    .filter(Course.id == id)
+                    .one_or_none()
+        )
 
         if not course:
             course_api.abort(404, 'course does not exist')
-        return jsonify(course.to_dict(include_categories=True))
+        return jsonify(course.to_dict(include_categories=True, include_author=True))
     
 @course_api.route("/categories/<id>")
 class CoursesByCategory(Resource):
@@ -81,7 +88,7 @@ class CoursesByCategory(Resource):
                 .filter(Course_Category_Map.category_id == id) \
                 .paginate(page=q_params.get('page'), per_page=q_params.get('page_size'), error_out=False)
 
-        response_courses = [course.to_dict(include_categories=True) for course in courses]
+        response_courses = [course.to_dict(include_categories=True, include_author=True) for course in courses]
         response = {
             'courses': response_courses,
             'page': q_params.get('page'),

@@ -23,9 +23,13 @@ def seed_courses():
 
             try:
                 for jc in json_courses:
+                    print("author: ", jc['author'])
+                    print("author first name", jc['author'].split(" ")[0])
+                    author_user = User.query.filter(User.first_name == jc['author'].split(" ")[0].lower()).one()
+                    print("author user: ", author_user)
                     course = Course(
                         title=jc['title'].lower(),
-                        author=jc['author'].lower(),
+                        author_id=author_user.id,
                         free=jc['free'],
                         overview=jc['overview'].lower(),
                         img=jc['img'],
@@ -86,7 +90,8 @@ def seed_users():
                     last_name=ju['last_name'].lower(),
                     email=ju['email'].lower(),
                     password=ju['password'],
-                    profile_image=ju['profile_image']
+                    profile_image=ju['profile_image'],
+                    is_author=ju['is_author']
                 )
 
                 db.session.add(user)
@@ -117,8 +122,8 @@ def seed_database():
         db.drop_all()
         db.create_all()
 
-        seed_courses()
         seed_users()
+        seed_courses()
     
 
 if __name__ == '__main__':
