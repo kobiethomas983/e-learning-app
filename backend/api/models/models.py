@@ -25,11 +25,17 @@ class Course(db.Model):
     def __repr__(self):
         return f"<id ={self.id}, title={self.title}, author={self.author}>"
     
-    def to_dict(self, include_categories=False):
+    def to_dict(self, include_categories=False, include_author=False):
         data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
         if include_categories:
             data['categories'] = [{"name": cat.name, "id": cat.id} for cat in self.categories]
-        
+        if include_author:
+            data['author'] = {
+                "id": self.author.id,
+                "name": " ".join((self.author.first_name, self.author.last_name)),
+                "email": self.author.email,
+                "profile_image": self.author.profile_image
+            }
         return data
 
 
