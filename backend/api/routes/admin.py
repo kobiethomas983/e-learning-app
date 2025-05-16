@@ -29,11 +29,28 @@ class AdminCourses(Resource):
     def post(self):
         email_identity = get_jwt_identity()
         user = User.query.filter(User.email == email_identity).one_or_none()
-        user_roles = User_Roles.query.filter(User_Roles.user_id == user.id).all()
-        is_admin = list(filter(lambda x: x.role_id == roles_to_ids["admin"], user_roles))
+        
+        if not user:
+            admin_api.abort(401, 'unauthorized to make request')
+        
+        parts = admin_api.payload.get('author').split()
+        first_name, last_name = (parts + [''])[:2]
+        author = User.query.filter(User.first_name==first_name,User.last_name==last_name).first()
+        if not author:
+            admin_api.abort(400, 'need to create author before creating course')
+        
+        print("author: ", author)
+        print("user: ", user)
+        is_user_admin = is_admin(email_identity, user)
+        is_author_match = (
+            author.first_name == user.first_name and
+            author.last_name == user.last_name and
+            user.is_author
+        )
 
-        if not is_admin:
-            admin_api.abort(401, "Unauthorized to do this operation")
+        if not (is_user_admin or is_author_match):
+            admin_api.abort(401, "have to be creator of course or admin to create course")
+        
 
         request_data = admin_api.payload
         if not request_data.get('categories') or len(request_data.get('categories')) == 0:
@@ -42,7 +59,7 @@ class AdminCourses(Resource):
         try:
             course = Course(
                 title=request_data['title'],
-                author=request_data['author'],
+                author_id=author.id,
                 free=request_data['free'],
                 overview=request_data['overview'],
                 img=request_data['img'],
@@ -127,8 +144,9 @@ class AdminCourse(Resource):
 
 
 
-def is_admin(email_identity):
-        user = User.query.filter(User.email == email_identity).one_or_none()
+def is_admin(email_identity, user = None):
+        if not user:
+            user = User.query.filter(User.email == email_identity).one_or_none()
         user_roles = User_Roles.query.filter(User_Roles.user_id == user.id).all()
         is_admin = list(filter(lambda x: x.role_id == roles_to_ids["admin"], user_roles))
         return len(is_admin) > 0
