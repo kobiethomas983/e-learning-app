@@ -95,6 +95,15 @@ def seed_users():
                 )
 
                 db.session.add(user)
+
+            super_user = User(
+                first_name='super',
+                last_name ='admin',
+                email='super_admin@gmail.com',
+                password='1234',
+                is_author=False
+            )
+            db.session.add(super_user)
             db.session.commit()
 
             for user in User.query.all():
@@ -103,6 +112,12 @@ def seed_users():
                     user_id=user.id
                 )
                 db.session.add(user_role)
+                if user.first_name == 'super' and user.last_name == 'admin':
+                    admin_role = User_Roles(
+                        role_id=1,
+                        user_id=user.id
+                    )
+                    db.session.add(admin_role)
             db.session.commit()
         except SQLAlchemyError as error:
             db.session.rollback()
