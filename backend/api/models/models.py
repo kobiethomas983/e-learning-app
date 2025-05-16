@@ -86,6 +86,16 @@ class User(db.Model):
         back_populates='users'
     )
 
+    def __repr__(self):
+        return f"<id={self.id}, first_name={self.first_name}, last_name={self.last_name}, email={self.email}>"
+    
+    def to_dict(self, include_roles=False):
+        data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        if include_roles:
+            data["roles"] = [r.role_name for r in self.roles]
+        return data
+
+
 class Role(db.Model):
     __tablename__ = "roles"
 

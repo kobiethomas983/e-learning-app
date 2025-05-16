@@ -26,11 +26,13 @@ def create_app():
     from .routes.categories import categories_api
     from .routes.admin import admin_api
     from .routes.auth import auth_api
+    from .routes.users import users_api
 
     api.add_namespace(course_api, path='/courses')
     api.add_namespace(categories_api, path='/categories')
     api.add_namespace(admin_api, path="/admin")
     api.add_namespace(auth_api, path="/auth")
+    api.add_namespace(users_api, path="/users")
 
     with app.app_context():
         db.create_all() #checks if tables exists, if dont creates them
