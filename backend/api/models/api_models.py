@@ -35,6 +35,18 @@ login_model = auth_namespace.model(
     }
 )
 
+create_account_model = auth_namespace.model(
+    'AccountInformation',
+    {
+        'first_name': fields.String(required=True),
+        'last_name': fields.String(required=True),
+        'email': fields.String(required=True),
+        'password': fields.String(required=True),
+        'profile_image': fields.String(),
+        'is_author': fields.String()
+    }
+)
+
 
 create_edit_user_model = user_namespace.model(
     'User',
