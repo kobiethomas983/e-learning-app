@@ -20,7 +20,7 @@ const Course = ({title, author, free, img, overview, url, categories, onCategory
     }
 
     const handleClickOnAuthor = (author) => {
-        onAuthorFetch(author);
+        onAuthorFetch(author?.name);
     }
 
     const formatBriefOverview = (overview) => {
@@ -54,7 +54,7 @@ const Course = ({title, author, free, img, overview, url, categories, onCategory
                         className='category-link'
                         onClick={() => handleClickOnAuthor(author)}
                     >
-                        {author}
+                        {author?.name}
                     </a>
                 </ListGroup.Item>
                 {free == true
